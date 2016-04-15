@@ -1,0 +1,114 @@
+@import "settings";
+
+[data-openModal] {
+    cursor: pointer;
+}
+
+//
+// Html class
+//
+html.modal-opened {
+    overflow: hidden;
+}
+
+//
+// Modal
+//
+.modal {
+    display: block;
+    position: fixed;
+    z-index: $modal-zindex;
+    top: 50%;
+    left: 50%;
+    width: $modal-width-full;
+    max-height: $modal-height-full;
+    overflow: auto;
+    padding: $modal-padding;
+    background: $modal-background;
+    opacity: 0;
+    transition: $modal-transition;
+    transform: translate(-50%, -50%);
+
+    .loader {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+    }
+
+    &--fullheight {
+        height: $modal-height-full;
+    }
+
+    &--open {
+        //top: 50%;
+        //transform: translate(-50%, -50%);
+        opacity: 1;
+        transition: $modal-transition;
+    }
+
+    //
+    // Content
+    //
+    &__content {
+        position: relative;
+    }
+
+    //
+    // Overlay
+    //
+    &__overlay {
+        display: block;
+        position: fixed;
+        z-index: $modal-overlay-zindex;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $modal-overlay-background;
+        opacity: 0;
+        transition: $modal-overlay-transition;
+
+        &--open {
+            opacity: 1;
+        }
+    }
+
+
+    //
+    // Close
+    //
+    &__close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: $modal-close-width;
+        height: $modal-close-width;
+        cursor: pointer;
+        outline: none;
+        transform: rotate(45deg);
+
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            background: $modal-close-color;
+        }
+
+        &:before {
+            left: (($modal-close-width / 2) - 1px);
+            top: 0;
+            width: 1px;
+            height: 100%;
+        }
+
+        &:after {
+            left: 0;
+            top: (($modal-close-width / 2) - 1px);
+            width: 100%;
+            height: 1px;
+        }
+    }
+}

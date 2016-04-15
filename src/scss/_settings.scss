@@ -1,0 +1,18 @@
+// Z-index
+$modal-zindex               : 1338 !default;
+$modal-overlay-zindex       : 1337 !default;
+
+// Dimensions
+$modal-height-full          : 90% !default;
+$modal-width-full           : 94% !default;
+$modal-padding              : 30px !default;
+$modal-close-width          : 25px !default;
+
+// Colors
+$modal-close-color          : #333 !default;
+$modal-background           : #FFF !default;
+$modal-overlay-background   : rgba(0,0,0,.6) !default;
+
+// Transitions
+$modal-transition           : opacity 1ms ease !default;
+$modal-overlay-transition   : opacity 0.3s ease !default;
