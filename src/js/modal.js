@@ -26,6 +26,8 @@ var FW = FW || {};
 		maxWidth: null,
 		minWidth: null,
 		overlay: true,
+		confirmOnClose: false,
+		confirmOnCloseText: 'Weet u zeker dat u dit venster wilt sluiten?',
 		onClose: null,
 		onOpen: null
 	};
@@ -42,6 +44,13 @@ var FW = FW || {};
 	 */
 	Modal.prototype.close = function() {
 		var self = this;
+
+		/**
+		 * Confirm box when closing modal
+		 */
+		if( this.options.confirmOnClose && !window.confirm( this.options.confirmOnCloseText ) ) {
+			return;
+		}
 
 		this.modal.className = this.modal.className.replace(' modal--open', '');
 		this.overlay.className = this.overlay.className.replace(' modal__overlay--open', '');
