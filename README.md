@@ -1,4 +1,4 @@
-# Amf Modal 1.0.1
+# Amf Modal 1.2.0
 
 ## Example 1
 ``` js
@@ -42,6 +42,9 @@ confirmOnClose: false
 
 // Text in cofirm box when closing
 confirmOnCloseText: 'Weet u zeker dat u dit venster wilt sluiten?'
+
+// Copy form values from origin to modal and vice versa
+copyFormValues: true,
 
 // Callback when closing modal
 onClose: null

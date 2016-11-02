@@ -26,6 +26,9 @@ var FW = FW || {};
 		maxWidth: null,
 		minWidth: null,
 		overlay: true,
+		confirmOnClose: false,
+		confirmOnCloseText: 'Weet u zeker dat u dit venster wilt sluiten?',
+        copyFormValues: true,
 		onClose: null,
 		onOpen: null
 	};
@@ -42,6 +45,17 @@ var FW = FW || {};
 	 */
 	Modal.prototype.close = function() {
 		var self = this;
+
+		/**
+		 * Confirm box when closing modal
+		 */
+		if( this.options.confirmOnClose && !window.confirm( this.options.confirmOnCloseText ) ) {
+			return;
+		}
+
+        if( this.options.copyFormValues ) {
+            copyFormValues.call(this, 'close');
+        }
 
 		this.modal.className = this.modal.className.replace(' modal--open', '');
 		this.overlay.className = this.overlay.className.replace(' modal__overlay--open', '');
@@ -73,6 +87,10 @@ var FW = FW || {};
 	 */
 	Modal.prototype.open = function() {
 		buildModal.call(this);
+
+        if( this.options.copyFormValues ) {
+            copyFormValues.call(this, 'open');
+        }
 
 		// Bind events
 		bindEvents.call(this);
@@ -151,6 +169,42 @@ var FW = FW || {};
 		// Add element to body
 		document.body.appendChild(docFrag);
 	}
+
+    /**
+     * Copy form values from origin to modal or vice versa
+     */
+    function copyFormValues( dir ) {
+        var inputElements,
+            destinyElement;
+
+        // Only possible with dom elements as source
+        if( typeof this.options.content === 'string' ) {
+            return;
+        }
+
+        if( dir === 'open' ) {
+            inputElements = this.options.content.querySelectorAll('input, textarea');
+            destinyElement = document.querySelector('.modal__content');
+        }
+        else {
+            inputElements = document.querySelectorAll('.modal__content input, .modal__content textarea');
+            destinyElement = this.options.content;
+        }
+
+        for( var i = 0, len = inputElements.length; i < len; i++ ) {
+            if( inputElements[i].name !== '' ) {
+                switch( inputElements[i].type ) {
+                    case 'checkbox':
+                    case 'radio':
+                        destinyElement.querySelector('[name="' + inputElements[i].name + '"][value="' + inputElements[i].value + '"]').checked = inputElements[i].checked;
+                        break;
+                    default:
+                        destinyElement.querySelector('[name="' + inputElements[i].name + '"]').value = inputElements[i].value;
+                        break;
+                }
+            }
+        }
+    }
 
 	/**
 	 * Bind events
