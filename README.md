@@ -1,4 +1,4 @@
-# Amf Modal 1.2.0
+# Amf Modal 1.3.0
 
 ## Example 1
 ``` js
@@ -14,9 +14,10 @@ newModal.open();
 > Uses jQuery
 
 ``` html
-<span data-openmodal="foo-modal">Open modal</span>
+<span data-openmodal="foo-modal" data-modal-closebutton="false">Open modal</span>
 <div class="visuallyhidden" data-modal="foo-modal">
     Modal content
+    <div><span class="button" data-closemodal>Sluit</span></div>
 </div>
 ```
 

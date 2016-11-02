@@ -257,15 +257,26 @@ var FW = FW || {};
 	 *  - uses jQuery
 	 */
 	if( typeof $ !== undefined ) {
-		$('body').on('click', '[data-openmodal]', function() {
-			var $modal = $('[data-modal="' + $(this).data('openmodal') + '"]'),
-				newModal = new FW.Modal({
-					content: $modal[0],
-					maxWidth: parseFloat( $modal.data('modal-width') ) || 600
-				});
+		var amfModal;
 
-			newModal.open();
+        $('body').on('click', '[data-openmodal]', function() {
+			var $modal = $('[data-modal="' + $(this).data('openmodal') + '"]');
+
+            amfModal = new FW.Modal({
+				content: $modal[0],
+                closeButton: $modal.data('modal-closebutton') === 'false' || $modal.data('modal-closebutton') === false ? false : true,
+				maxWidth: parseFloat( $modal.data('modal-width') ) || 600
+			});
+
+			amfModal.open();
 		});
+
+        $('body').on('click', '[data-closemodal]', function() {
+            if( amfModal ) {
+                amfModal.close();
+                amfModal = null;
+            }
+        });
 	}
 
 	/**
