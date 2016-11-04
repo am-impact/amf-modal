@@ -175,7 +175,14 @@ var FW = FW || {};
      */
     function copyFormValues( dir ) {
         var inputElements,
-            destinyElement;
+            destinyElement,
+            changeEvent;
+
+        // Create a change event for target elements
+        if( 'createEvent' in document ) {
+            changeEvent = document.createEvent('HTMLEvents');
+            changeEvent.initEvent('change', false, true);
+        }
 
         // Only possible with dom elements as source
         if( typeof this.options.content === 'string' ) {
@@ -196,7 +203,17 @@ var FW = FW || {};
                 switch( inputElements[i].type ) {
                     case 'checkbox':
                     case 'radio':
-                        destinyElement.querySelector('[name="' + inputElements[i].name + '"][value="' + inputElements[i].value + '"]').checked = inputElements[i].checked;
+                        var elem = destinyElement.querySelector('[name="' + inputElements[i].name + '"][value="' + inputElements[i].value + '"]');
+                        elem.checked = inputElements[i].checked;
+
+                        // Trigger change event at target elements
+                        if( 'createEvent' in document ) {
+                            elem.dispatchEvent(changeEvent);
+                        }
+                        else {
+                            elem.fireEvent('onchange');
+                        }
+
                         break;
                     default:
                         destinyElement.querySelector('[name="' + inputElements[i].name + '"]').value = inputElements[i].value;

@@ -19,9 +19,8 @@ html.modal-opened {
   background: #FFF;
   opacity: 0;
   transition: opacity 1ms ease;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
 }
 
 .modal .loader {
@@ -29,9 +28,8 @@ html.modal-opened {
   left: 0;
   top: 50%;
   width: 100%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
 }
 
 .modal--fullheight {
@@ -72,9 +70,8 @@ html.modal-opened {
   height: 25px;
   cursor: pointer;
   outline: none;
-  -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
 }
 
 .modal__close:before, .modal__close:after {
