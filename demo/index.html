@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal</title>
+    <link rel="stylesheet" href="../dist/modal.css">
+</head>
+<body>
+    <div id="modalElement">
+        Content
+    </div>
+    <div id="modalElement2">
+        Content 2
+    </div>
+
+    <script src="../dist/modal.js"></script>
+    <script>
+        (function() {
+            newModal = new FW.Modal({
+                content: document.getElementById('modalElement'),
+                maxWidth: 600,
+                closeButton: false,
+                closeOnEscape: false,
+                closeOnOverlay: false
+            });
+
+            newModal.open();
+        })();
+    </script>
+</body>
+</html>
