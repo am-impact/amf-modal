@@ -22,13 +22,15 @@ var FW = FW || {};
 	 */
 	Modal.defaults = {
 		closeButton: true,
-		content: '',
-		maxWidth: null,
-		minWidth: null,
-		overlay: true,
+        closeOnOverlay: true,
+        closeOnEscape: true,
 		confirmOnClose: false,
 		confirmOnCloseText: 'Weet u zeker dat u dit venster wilt sluiten?',
+        content: '',
         copyFormValues: true,
+        maxWidth: null,
+        minWidth: null,
+        overlay: true,
 		onClose: null,
 		onOpen: null
 	};
@@ -233,12 +235,17 @@ var FW = FW || {};
 			this.closeButton.addEventListener('click', this.close.bind(this));
 		}
 
-		if (this.overlay) {
+		if (this.overlay && this.options.closeOnOverlay) {
 			this.overlay.addEventListener('click', this.close.bind(this));
 		}
 
 		this.document.addEventListener('keydown', function(e) {
-			if( e.which === 27 && self.modal.className.indexOf('modal--open') > -1 ) {
+            // Escape
+			if(
+                e.which === 27 &&
+                self.options.closeOnEscape &&
+                self.modal.className.indexOf('modal--open') > -1
+            ) {
 				self.close();
 			}
 		});
@@ -273,28 +280,28 @@ var FW = FW || {};
 	 * Default elements which opens a Modal
 	 *  - uses jQuery
 	 */
-	if( typeof $ !== undefined ) {
-		var amfModal;
+	if( typeof jQuery !== 'undefined' ) {
+        var amfModal;
 
-        $('body').on('click', '[data-openmodal]', function() {
-			var $modal = $('[data-modal="' + $(this).data('openmodal') + '"]');
+        jQuery('body').on('click', '[data-openmodal]', function() {
+            var $modal = jQuery('[data-modal="' + jQuery(this).data('openmodal') + '"]');
 
             amfModal = new FW.Modal({
-				content: $modal[0],
+                content: $modal[0],
                 closeButton: $modal.data('modal-closebutton') === 'false' || $modal.data('modal-closebutton') === false ? false : true,
-				maxWidth: parseFloat( $modal.data('modal-width') ) || 600
-			});
+                maxWidth: parseFloat( $modal.data('modal-width') ) || 600
+            });
 
-			amfModal.open();
-		});
+            amfModal.open();
+        });
 
-        $('body').on('click', '[data-closemodal]', function() {
+        jQuery('body').on('click', '[data-closemodal]', function() {
             if( amfModal ) {
                 amfModal.close();
                 amfModal = null;
             }
         });
-	}
+    }
 
 	/**
 	 * Add Modal to FW object
