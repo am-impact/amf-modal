@@ -114,6 +114,32 @@ var FW = FW || {};
 		}
 	};
 
+    /**
+     * Fill modal with content
+     */
+    Modal.prototype.setContent = function( content, callback, contentElement ) {
+        var contentHtml,
+
+            // At init: modal 'contentHolder' is given through parameter 'contentElement'
+            contentHolder = contentElement || document.querySelector('.modal__content');
+
+        // Is content a string or DOM object?
+        if (typeof content === 'string') {
+            content = content;
+        } else {
+            content = content.innerHTML;
+        }
+
+        contentHolder.innerHTML = content;
+
+        /**
+         * Open callback
+         */
+        if (typeof callback === 'function') {
+            callback.call(this);
+        }
+    };
+
 
 	/**
 	 *
@@ -125,14 +151,7 @@ var FW = FW || {};
 	 * Build Modal
 	 */
 	function buildModal() {
-		var content, contentHolder, docFrag;
-
-		// Is content a string or DOM object?
-		if (typeof this.options.content === 'string') {
-			content = this.options.content;
-		} else {
-			content = this.options.content.innerHTML;
-		}
+		var contentHolder, docFrag;
 
 		// Create element
 		docFrag = document.createDocumentFragment();
@@ -162,7 +181,9 @@ var FW = FW || {};
 		// Content in Modal
 		contentHolder = document.createElement('div');
 		contentHolder.className = 'modal__content';
-		contentHolder.innerHTML = content;
+
+        this.setContent( this.options.content, null, contentHolder );
+
 		this.modal.appendChild(contentHolder);
 
 		// Add Modal to element

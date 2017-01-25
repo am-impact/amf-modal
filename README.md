@@ -1,4 +1,4 @@
-# Amf Modal 1.3.3
+# Amf Modal 1.4.0
 
 ## Example 1
 ``` js
@@ -8,6 +8,9 @@ newModal = new FW.Modal({
 });
 
 newModal.open();
+newModal.setContent('New content', function() {
+    // Callback 
+});
 ```
 
 ## Example 2
@@ -25,6 +28,12 @@ newModal.open();
 ``` js
 // Show close button
 closeButton: true
+
+// Close modal when clicking on overlay
+closeOnOverlay: true,
+
+// Close modal when pressing escape
+closeOnEscape: true,
 
 // Content: string or DOM element
 content: ''
