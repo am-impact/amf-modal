@@ -8,6 +8,7 @@
 // Html class
 //
 html.modal-opened {
+    max-height: 100%;
     overflow: hidden;
 }
 
@@ -28,6 +29,7 @@ html.modal-opened {
     opacity: 0;
     transition: $modal-transition;
     transform: translate(-50%, -50%);
+    -webkit-overflow-scrolling: touch;
 
     .loader {
         position: absolute;

@@ -3,6 +3,7 @@
 }
 
 html.modal-opened {
+  max-height: 100%;
   overflow: hidden;
 }
 
@@ -21,6 +22,7 @@ html.modal-opened {
   transition: opacity 1ms ease;
   -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal .loader {

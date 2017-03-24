@@ -1,4 +1,4 @@
-# Amf Modal 1.4.0
+# Amf Modal 1.4.1
 
 ## Example 1
 ``` js
@@ -9,7 +9,7 @@ newModal = new FW.Modal({
 
 newModal.open();
 newModal.setContent('New content', function() {
-    // Callback 
+    // Callback
 });
 ```
 
