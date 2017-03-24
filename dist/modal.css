@@ -10,6 +10,7 @@ html.modal-opened {
 
 html.modal-opened body {
   position: fixed;
+  width: 100%;
 }
 
 .modal {
