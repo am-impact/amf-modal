@@ -7,6 +7,7 @@ var FW = FW || {};
         this.modal = null;
         this.overlay = null;
         this.document = document;
+        this.currentScrollTop = 0;
 
         // Determine proper prefix
         this.transitionEnd = transitionSelect();
@@ -46,8 +47,7 @@ var FW = FW || {};
      * Close Modal
      */
     Modal.prototype.close = function() {
-        var self = this,
-            currentScrollTop = document.body.scrollTop;
+        var self = this;
 
         /**
          * Confirm box when closing modal
@@ -79,7 +79,7 @@ var FW = FW || {};
 
         // Remove body position and set scrollPosition
         document.body.style.removeProperty('top');
-        document.body.scrollTop = currentScrollTop;
+        document.body.scrollTop = this.currentScrollTop;
 
         /**
          * Close callback
@@ -94,6 +94,7 @@ var FW = FW || {};
      */
     Modal.prototype.open = function() {
         // Set body position
+        this.currentScrollTop = document.body.scrollTop;
         document.body.style.top = '-' + document.body.scrollTop + 'px';
 
         buildModal.call(this);
