@@ -46,10 +46,8 @@ var FW = FW || {};
      * Close Modal
      */
     Modal.prototype.close = function() {
-        var self = this;
-
-        // Remove body position
-        document.body.style.removeProperty('top');
+        var self = this,
+            currentScrollTop = document.body.scrollTop;
 
         /**
          * Confirm box when closing modal
@@ -78,6 +76,10 @@ var FW = FW || {};
                 self.overlay.parentNode.removeChild(self.overlay);
             }
         });
+
+        // Remove body position and set scrollPosition
+        document.body.style.removeProperty('top');
+        document.body.scrollTop = currentScrollTop;
 
         /**
          * Close callback

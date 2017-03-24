@@ -1,4 +1,4 @@
-# Amf Modal 1.4.2
+# Amf Modal 1.4.3
 
 ## Example 1
 ``` js
