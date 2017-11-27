@@ -2,17 +2,6 @@
   cursor: pointer;
 }
 
-html.modal-opened {
-  position: fixed;
-  max-height: 100%;
-  overflow: hidden;
-}
-
-html.modal-opened body {
-  position: fixed;
-  width: 100%;
-}
-
 .modal {
   display: block;
   position: fixed;
@@ -22,6 +11,7 @@ html.modal-opened body {
   width: 94%;
   max-height: 90%;
   overflow: auto;
+  overscroll-behavior: contain;
   padding: 30px;
   background: #FFF;
   opacity: 0;

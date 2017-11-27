@@ -5,20 +5,6 @@
 }
 
 //
-// Html class
-//
-html.modal-opened {
-    position: fixed;
-    max-height: 100%;
-    overflow: hidden;
-
-    body {
-        position: fixed;
-        width: 100%;
-    }
-}
-
-//
 // Modal
 //
 .modal {
@@ -30,6 +16,7 @@ html.modal-opened {
     width: $modal-width-full;
     max-height: $modal-height-full;
     overflow: auto;
+    overscroll-behavior: contain;
     padding: $modal-padding;
     background: $modal-background;
     opacity: 0;
