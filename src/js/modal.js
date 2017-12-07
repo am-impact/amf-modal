@@ -14,7 +14,7 @@ var FW = FW || {};
 
         // Create options by extending defaults with the passed in arugments
         if (arguments[0] && typeof arguments[0] === 'object') {
-            this.options = extendDefaults( Modal.defaults, arguments[0] );
+            this.options = Object.assign({}, Modal.defaults, arguments[0]);
         }
     };
 

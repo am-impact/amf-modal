@@ -6,6 +6,7 @@ module.exports = {
 		files: [
 			{
 				src: [
+					'src/js/polyfill.js',
 					'src/js/modal.js'
 				],
 				dest: 'dist/modal.js',
